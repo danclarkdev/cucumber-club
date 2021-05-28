@@ -12,7 +12,11 @@ router
 
         async (req, res) => {
 
-            const tests = await Test.findAll();
+            const tests = await Test.findAll({
+                order: [
+                    ['createdAt', 'DESC']
+                ]
+            });
 
             res.json({
                 data: tests
@@ -26,6 +30,8 @@ router
         body('body').isString(),
 
         async (req, res) => {
+
+            console.log(req.body);
 
             const errors = validationResult(req);
 
@@ -66,7 +72,6 @@ router
         })
 
     .put('/tests/:id',
-
 
         body('name').isString(),
 

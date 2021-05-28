@@ -1,12 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import tests from './routes/tests';
+import cors from 'cors';
 
 const server = express();
 
 server
 
   .disable('x-powered-by')
+
+  .use(cors({
+    origin: true
+  }))
 
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
